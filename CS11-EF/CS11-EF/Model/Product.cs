@@ -19,17 +19,28 @@ namespace CS11_EF.Model
         [Column("Ten san pham", TypeName = "ntext")]
         public string Name { set; get; }
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public int? CateId { get; set; }
         //cách tạo FK
-       // [Required] // khi them product phai co category, khi xoa category thi product cung bi xoa
+        // [Required] // khi them product phai co category, khi xoa category thi product cung bi xoa
+        //FK nên để ở bảng nhiều (1 product có 1 category) (1 category có nhiều product)
         [ForeignKey("CateId")] // khai bao khoa ngoai, tu dinh nghia
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
         public void PrintInfo()
         {
             Console.WriteLine($"ID: {ProductId}");
             Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Provider: {Price}");
+            Console.WriteLine($"Price: {Price}");
+            Console.WriteLine($"CateID: {CateId}");
         }
+
+        //Inverse Property: Tạo ra FK
+        //Tao ra them 1 FK trong product (1 product co 2 category)
+        public int? CateId2 { get; set; }
+  
+        [ForeignKey("CateId2")]
+        [InverseProperty("Products")]
+
+        public virtual Category Category2 { get; set; }
     }
 }

@@ -17,7 +17,11 @@ namespace CS11_EF.Model
         [StringLength(100)]
         public string Name { set; get; }
 
-        [Column(TypeName = "ntext")]                  // Cột (trường) kiểu ntext trong SQL Server
+        [Column(TypeName = "ntext")]   // Cột (trường) kiểu ntext trong SQL Server
         public string Description { set; get; }
+        //Collection navigation property
+        public virtual List<Product> Products { set; get; }
+        //Collect Navigation: Khong tao ra FK
+
     }
 }

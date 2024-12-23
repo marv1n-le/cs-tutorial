@@ -35,6 +35,7 @@ namespace CS11_EF.Model
 
             optionsBuilder.UseSqlServer(connectionString);        // thiết lập làm việc với SqlServer
             optionsBuilder.UseLoggerFactory(loggerFactory);  // thiết lập logging
+            optionsBuilder.UseLazyLoadingProxies();           // thiết lập lazy loading, tu dong load du lieu
 
         }
     }
