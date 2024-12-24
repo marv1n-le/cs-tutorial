@@ -22,6 +22,7 @@ namespace CS11_EF.Model
         //Collection navigation property
         public virtual List<Product> Products { set; get; }
         //Collect Navigation: Khong tao ra FK
+        public CategoryDetail CategoryDetail { get; set; }
 
     }
 }

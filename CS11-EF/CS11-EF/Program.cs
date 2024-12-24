@@ -22,11 +22,11 @@ namespace CS11_EF
             var kq = dbcontext.Database.EnsureCreated();
             if (kq)
             {
-                Console.WriteLine($"Tạo {databasename} thành công");
+                Console.WriteLine($"Create {databasename} sucessfully!!!");
             }
             else
             {
-                Console.WriteLine($"{databasename} đã có trước đó");
+                Console.WriteLine($"{databasename} already had in database");
             }
         }
 
@@ -52,11 +52,11 @@ namespace CS11_EF
             var kq = dbcontext.Database.EnsureDeleted();
             if (kq)
             {
-                Console.WriteLine($"Xóa {dbName} thành công");
+                Console.WriteLine($"Delete {dbName} sucessfully");
             }
             else
             {
-                Console.WriteLine($"Không xóa được {dbName}");
+                Console.WriteLine($"Cannot delete database {dbName}");
             }
         }
         static void InsertData()
@@ -82,9 +82,10 @@ namespace CS11_EF
         }
         static void Main(string[] args)
         {
-            //DropDatabase();
-            //CreateDatabase();
-            InsertData();
+            DropDatabase();
+            CreateDatabase();
+
+            //InsertData();
             //using var dbcontext = new ShopDbContext();
             ////var product = (from p in dbcontext.Products where p.ProductId == 3 select p)
             ////    .FirstOrDefault();

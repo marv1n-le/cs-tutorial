@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CS11_EF.Model
 {
-    [Table("Product")]
+    //[Table("Product")] // tên bảng trong CSDL
     public class Product
     {
         [Key]
@@ -24,7 +24,7 @@ namespace CS11_EF.Model
         //cách tạo FK
         // [Required] // khi them product phai co category, khi xoa category thi product cung bi xoa
         //FK nên để ở bảng nhiều (1 product có 1 category) (1 category có nhiều product)
-        [ForeignKey("CateId")] // khai bao khoa ngoai, tu dinh nghia
+       // [ForeignKey("CateId")] // khai bao khoa ngoai, tu dinh nghia
         public virtual Category Category { get; set; }
         public void PrintInfo()
         {
@@ -38,8 +38,8 @@ namespace CS11_EF.Model
         //Tao ra them 1 FK trong product (1 product co 2 category)
         public int? CateId2 { get; set; }
   
-        [ForeignKey("CateId2")]
-        [InverseProperty("Products")]
+        //[ForeignKey("CateId2")]
+        //[InverseProperty("Products")]
 
         public virtual Category Category2 { get; set; }
     }
