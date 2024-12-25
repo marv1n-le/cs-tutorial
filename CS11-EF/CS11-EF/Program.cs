@@ -7,46 +7,21 @@ namespace CS11_EF
     {
         static void CreateDatabase()
         {
-            //using (var dbcontext = new ShopDbContext())
-            //{
-            //    String databasename = dbcontext.Database.GetDbConnection().Database;// mydata
-
-            //    Console.WriteLine("Tạo " + databasename);
-
-            //    bool result = await dbcontext.Database.EnsureCreatedAsync();
-            //    string resultstring = result ? "tạo  thành  công" : "đã có trước đó";
-            //    Console.WriteLine($"CSDL {databasename} : {resultstring}");
-            //}
             using var dbcontext = new ShopDbContext();
             string databasename = dbcontext.Database.GetDbConnection().Database;
             var kq = dbcontext.Database.EnsureCreated();
             if (kq)
             {
-                Console.WriteLine($"Create {databasename} sucessfully!!!");
+                Console.WriteLine($"Create database {databasename} sucessfully!!!");
             }
             else
             {
-                Console.WriteLine($"{databasename} already had in database");
+                Console.WriteLine($"Database {databasename} already had in database");
             }
         }
 
         static void DropDatabase()
         {
-
-            //using (var context = new ShopDbContext())
-            //{
-            //    String databasename = context.Database.GetDbConnection().Database;
-            //    Console.Write($"Có chắc chắn xóa {databasename} (y) ? ");
-            //    string input = Console.ReadLine();
-
-            //    // Hỏi lại cho chắc
-            //    if (input.ToLower() == "y")
-            //    {
-            //        bool deleted = await context.Database.EnsureDeletedAsync();
-            //        string deletionInfo = deleted ? "đã xóa" : "không xóa được";
-            //        Console.WriteLine($"{databasename} {deletionInfo}");
-            //    }
-            //}
             using var dbcontext = new ShopDbContext();
             string dbName = dbcontext.Database.GetDbConnection().Database;
             var kq = dbcontext.Database.EnsureDeleted();
@@ -85,35 +60,36 @@ namespace CS11_EF
             DropDatabase();
             CreateDatabase();
 
-            //InsertData();
-            //using var dbcontext = new ShopDbContext();
-            ////var product = (from p in dbcontext.Products where p.ProductId == 3 select p)
-            ////    .FirstOrDefault();
-            //////Entry: trả về một đối tượng EntityEntry mà cung cấp thông tin về trạng thái và thực thể được theo dõi
-            ////var e = dbcontext.Entry(product);
-            //////Reference: trả về một thực thể tham chiếu đến thực thể được theo dõi 
-            //////Load: tải thực thể từ cơ sở dữ liệu
-            ////e.Reference(p => p.Category).Load();
-            ////if (product.Category != null)
-            ////{
-            ////    Console.WriteLine(product.Category.Name + "-" + product.Category.Description);
-            ////} else Console.WriteLine("Category null");
-            ////product.PrintInfo();
+            InsertData();
+            using var dbcontext = new ShopDbContext();
+            var product = (from p in dbcontext.Products where p.ProductId == 3 select p)
+                .FirstOrDefault();
+            //Entry: trả về một đối tượng EntityEntry mà cung cấp thông tin về trạng thái và thực thể được theo dõi
+            var e = dbcontext.Entry(product);
+            //Reference: trả về một thực thể tham chiếu đến thực thể được theo dõi 
+            //Load: tải thực thể từ cơ sở dữ liệu
+            e.Reference(p => p.Category).Load();
+            if (product.Category != null)
+            {
+                Console.WriteLine(product.Category.Name + "-" + product.Category.Description);
+            }
+            else Console.WriteLine("Category null");
+            product.PrintInfo();
 
-            //var category = (from c in dbcontext.Categories where c.CategoryId == 1 select c).FirstOrDefault();
-            //Console.WriteLine(category.Name + "-" + category.Description);
+            var category = (from c in dbcontext.Categories where c.CategoryId == 1 select c).FirstOrDefault();
+            Console.WriteLine(category.Name + "-" + category.Description);
 
-            ////var e = dbcontext.Entry(category);
-            //////Collection: trả về một thực thể tham chiếu đến thực thể được theo dõi 
-            ////e.Collection(c => c.Products).Load();
+            //var e = dbcontext.Entry(category);
+            ////Collection: trả về một thực thể tham chiếu đến thực thể được theo dõi 
+            //e.Collection(c => c.Products).Load();
 
-            ////co lazyload nen khong can load
-            //if (category.Products != null)
-            //{
-            //    Console.WriteLine("So san pham: " + category.Products.Count);
-            //    category.Products.ForEach(p => p.PrintInfo());
-            //}
-            //else Console.WriteLine("Category null");
+            //co lazyload nen khong can load
+            if (category.Products != null)
+            {
+                Console.WriteLine("So san pham: " + category.Products.Count);
+                category.Products.ForEach(p => p.PrintInfo());
+            }
+            else Console.WriteLine("Category null");
 
         }
     }
