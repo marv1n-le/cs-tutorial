@@ -13,8 +13,8 @@ namespace CS12___Migration.Model
     {
         [Key]
         public int ArticleTagId { get; set; }
-        public int TagId { get; set; }
         [ForeignKey("TagId")]
+        public int TagId { get; set; }
         public Tag Tag { get; set; }
         [ForeignKey("ArticleId")]
         public int ArticleId { get; set; }
