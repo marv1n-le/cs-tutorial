@@ -16,12 +16,12 @@ namespace CS12___Migration.Model
         private const string ConnectionString = @"
                 Data Source=localhost;
                 Initial Catalog=WebDB;
-                User ID=sa;Password=12345";
+                User ID=sa;Password=Dutchanh123";
         public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => {
             builder.AddFilter(DbLoggerCategory.Query.Name, LogLevel.Information);
             builder.AddConsole();
         });
-
+            
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

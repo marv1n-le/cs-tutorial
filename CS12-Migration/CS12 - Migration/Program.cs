@@ -14,6 +14,8 @@
              * dotnet ef database update [MigrationName]
              * dotnet ef database drop  -f
              */
+            
         }
+        
     }
 }
