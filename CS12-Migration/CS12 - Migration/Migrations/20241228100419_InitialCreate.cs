@@ -21,7 +21,8 @@ namespace CS12___Migration.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropIndex(
+            migrationBuilder.DropIndex
+                (
                 name: "IX_ArticleTag_ArticleId_TagId",
                 table: "ArticleTag");
 
